@@ -1,0 +1,13 @@
+
+
+<br><form #f=ngForm (ngSubmit)="rechParForm(f.value)">
+  ID de la ville : <input type="text" ngModel name="numero">
+</form><br>
+
+<ng-template [ngIf]="ville" [ngIfElse]="inconnu">
+  Ville : {{ville.nom}}
+</ng-template>
+<ng-template #inconnu>
+  <div>Ville inconnue</div>
+</ng-template>
+

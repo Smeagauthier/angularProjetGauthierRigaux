@@ -14,4 +14,6 @@ export class VillesService {
   getVille(idville: number): Observable<Ville> {
     return this.httpClient.get<Ville>(this.host + '/villes/' + idville);
   }
+
+
 }

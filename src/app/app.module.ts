@@ -9,6 +9,7 @@ import {MainMenuComponent} from './components/main-menu/main-menu.component';
 import {HomeComponent} from './components/home/home.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { ExercicesComponent } from './components/exercices/exercices.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import {FormsModule} from "@angular/forms";
     VillesComponent,
     EtapesComponent,
     MainMenuComponent,
-    HomeComponent
+    HomeComponent,
+    ExercicesComponent
   ],
   imports: [
     BrowserModule,
