@@ -15,5 +15,13 @@ export class VillesService {
     return this.httpClient.get<Ville>(this.host + '/villes/' + idville);
   }
 
+  getVilleNom(nom: string): Observable<Ville[]> {
+    return this.httpClient.get<Ville[]>(this.host + "/villes/nom=" + nom);
+  }
+
+  deleteVille(ville: Ville): Observable<void> {
+    return this.httpClient.delete<void>(this.host + "/villes/" + ville.idville);
+  }
+
 
 }

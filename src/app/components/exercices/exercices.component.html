@@ -1,6 +1,5 @@
-
-
-<br><form #f=ngForm (ngSubmit)="rechParForm(f.value)">
+<!--<br>
+<form #f=ngForm (ngSubmit)="rechParForm(f.value)">
   ID de la ville : <input type="text" ngModel name="numero">
 </form><br>
 
@@ -11,3 +10,68 @@
   <div>Ville inconnue</div>
 </ng-template>
 
+<br>
+<form #a=ngForm (ngSubmit)="rechercheParNom(a.value)">
+  Recherche par nom : <input type="text" ngModel name="nom">
+</form><br>
+
+<ng-template [ngIf]="villestrouv">
+  <ng-template [ngIf]="villestrouv.length>0" [ngIfElse]="inconnu">
+    <ul>
+      <li *ngFor="let vi of villestrouv">
+        (ID:{{vi.idville}}) {{vi.nom}} {{vi.pays}} ({{vi.latitude}} {{vi.longitude}})
+        <button (click)="effacer(vi)">Effacer</button>
+      </li>
+    </ul>
+  </ng-template>
+  <ng-template #inconnu>
+    <div>inconnu</div>
+  </ng-template>
+</ng-template>-->
+
+<br>
+<div class="container">
+  <form [formGroup]="villeFormGroup" *ngIf="villeFormGroup">
+    <div class="form-group">
+      <label>Nom</label>
+      <input type="text" formControlName="nom" class="form-control"
+             [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.nom.errors, 'is-valid':submitted && !villeFormGroup.controls.nom.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.nom.errors">
+        <div *ngIf="villeFormGroup.controls.nom.errors.required">
+          Nom obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Latitude</label>
+      <input type="text" formControlName="latitude" class="form-control"
+             [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.latitude.errors, 'is-valid':submitted && !villeFormGroup.controls.latitude.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.latitude.errors">
+        <div *ngIf="villeFormGroup.controls.latitude.errors.required">
+          Latitude obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Longitude</label>
+      <input type="text" formControlName="longitude" class="form-control"
+             [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.longitude.errors, 'is-valid':submitted && !villeFormGroup.controls.longitude.errors }">
+      <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.longitude.errors">
+        <div *ngIf="villeFormGroup.controls.longitude.errors.required">
+          Longitude obligatoire
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Pays</label>
+      <input type="text" formControlName="pays" class="form-control"
+             [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.pays.errors, 'is-valid':submitted && !villeFormGroup.controls.pays.errors}">
+      <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.pays.errors">
+        <div *ngIf="villeFormGroup.controls.pays.errors.required">
+          Pays obligatoire
+        </div>
+      </div>
+    </div>
+    <button (click)="saveVille()">Valider</button>
+  </form>
+</div>
