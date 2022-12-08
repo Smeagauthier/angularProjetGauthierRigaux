@@ -87,4 +87,33 @@ export class ExercicesComponent implements OnInit {
     }
   }
 
+  rechercheParID(value: any) {
+    let numero: number = value.idville;
+    this.villeService.getVille(numero).subscribe({
+      next: data => {
+        this.ville = data;
+        this.villeFormGroup = this.fb.group(
+          {
+            nom: [data.nom, Validators.required],
+            latitude: [data.latitude, Validators.required],
+            longitude: [data.longitude, Validators.required],
+            pays: [data.pays, Validators.required]
+          }
+        )
+      },
+      error: error => {
+        alert("erreur ");
+        this.ville = null
+      }
+    })
+  }
+
+  majVille() {
+    this.submitted = true;
+    if (this.villeFormGroup?.invalid) {
+      return
+    }
+    alert("maj OK");
+  }
+
 }

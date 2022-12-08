@@ -10,8 +10,7 @@ import {VillesService} from "../../services/villes.service";
 })
 export class VillesComponent implements OnInit {
   villes?: Ville[]; //le ? signifie que la valeur undefinied est acceptée
-  constructor(private villesService: VillesService, private router:
-    Router) {
+  constructor(private villesService: VillesService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,12 +25,13 @@ export class VillesComponent implements OnInit {
       });
   }
 
-  onNewClient() {
-    this.router.navigateByUrl("newVille")
-  } //développé plus tard
+  onNewVille() {
+    this.router.navigateByUrl("newVille");
+  }
+
   onDelete(v: Ville) {
     let c = confirm('êtes vous sûr de vouloir supprimer ? ');
-    if (v) {
+    if (c) {
       this.villesService.deleteVille(v).subscribe(
         {
           next: data => {
@@ -52,5 +52,6 @@ export class VillesComponent implements OnInit {
   }
 
   onEdit(v: Ville) {
-  }//développé plus tard
+    this.router.navigateByUrl("editVille/"+v.idville);
+  }
 }

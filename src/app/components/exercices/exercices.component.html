@@ -30,6 +30,10 @@
 </ng-template>-->
 
 <br>
+<form #f2=ngForm (ngSubmit)="rechercheParID(f2.value)">
+  idville recherché :  <input type="text" ngModel name="idville">
+</form>
+<br>
 <div class="container">
   <form [formGroup]="villeFormGroup" *ngIf="villeFormGroup">
     <div class="form-group">
@@ -62,16 +66,15 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label>Pays</label>
-      <input type="text" formControlName="pays" class="form-control"
-             [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.pays.errors, 'is-valid':submitted && !villeFormGroup.controls.pays.errors}">
-      <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.pays.errors">
-        <div *ngIf="villeFormGroup.controls.pays.errors.required">
-          Pays obligatoire
-        </div>
+    <label>Pays</label>
+    <input type="text" formControlName="pays" class="form-control"
+           [ngClass]="{'is-invalid':submitted && villeFormGroup.controls.pays.errors, 'is-valid':submitted && !villeFormGroup.controls.pays.errors }">
+    <div class="invalid-feedback" *ngIf="submitted && villeFormGroup.controls.pays.errors">
+      <div *ngIf="villeFormGroup.controls.pays.errors.required">
+        Pays obligatoire
       </div>
     </div>
-    <button (click)="saveVille()">Valider</button>
+    <br>
+    <button (click)="majVille()">Valider</button>
   </form>
 </div>
