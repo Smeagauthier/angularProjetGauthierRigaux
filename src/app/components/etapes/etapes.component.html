@@ -1,1 +1,8 @@
-<p>etapes works!</p>
+<br>
+<form (ngSubmit)="onSearch()">
+  numéro de l'étape : <input type="text" [(ngModel)]="numetape" name="numetape">
+</form>
+<div *ngIf="etape"> <!-- si après la recherche comfact  n'est pas nul, alors tu vas afficher le formulaire d'edit commande-->
+  <app-editetape [etape]="etape" ></app-editetape>
+</div>
+

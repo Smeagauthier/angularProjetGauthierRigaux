@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Ville} from "../../entities/ville.entities";
 import {VillesService} from "../../services/villes.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {EtapesService} from "../../services/etapes.service";
 
 @Component({
   selector: 'app-exercices',
@@ -17,8 +18,9 @@ export class ExercicesComponent implements OnInit {
   submitted=false;
 
   villeFormGroup?: FormGroup;
+  etapeFormGroup?: FormGroup;
 
-  constructor(private villeService:VillesService, private fb: FormBuilder) {
+  constructor(private villeService:VillesService, private fb: FormBuilder, private etapesService:EtapesService) {
   }
 
   ngOnInit(): void {
@@ -114,6 +116,23 @@ export class ExercicesComponent implements OnInit {
       return
     }
     alert("maj OK");
+  }
+
+  rechercheEtapeParID(value: any) {
+    this.etapesService.search(value.idetape).subscribe({
+        next: data => {
+          this.etapeFormGroup = this.fb.group(
+            {
+              numero: [data.numero, [Validators.required]],
+              description: [data.description, Validators.required],
+              dateetape: [data.dateetape, Validators.required],
+              km: [data.km, Validators.required],
+            }
+          )
+        },
+        error: error => alert("commande introuvable")
+      }
+    )
   }
 
 }

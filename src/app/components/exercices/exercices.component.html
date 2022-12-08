@@ -27,7 +27,7 @@
   <ng-template #inconnu>
     <div>inconnu</div>
   </ng-template>
-</ng-template>-->
+</ng-template>
 
 <br>
 <form #f2=ngForm (ngSubmit)="rechercheParID(f2.value)">
@@ -77,4 +77,53 @@
     <br>
     <button (click)="majVille()">Valider</button>
   </form>
+</div> -->
+
+<br>
+<form #f3=ngForm (ngSubmit)="rechercheEtapeParID(f3.value)">
+  id recherché :  <input type="text" ngModel name="idetape">
+</form>
+
+<div class = container>
+  <div *ngIf="etapeFormGroup">
+    <form [formGroup]="etapeFormGroup">
+      <div class="form-group">
+        <label>Numéro</label>
+        <input type="text" formControlName="numero" class="form-control" [ngClass]="{'is-invalid':submitted && etapeFormGroup.controls.numero.errors,'is-valid':submitted && !etapeFormGroup.controls.numero.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && etapeFormGroup.controls.numero.errors">
+          <div *ngIf="etapeFormGroup.controls.numero.errors.required">
+            Numéro obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <input type="text" formControlName="description" class="form-control" [ngClass]="{'is-invalid':submitted && etapeFormGroup.controls.description.errors,'is-valid':submitted && !etapeFormGroup.controls.description.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && etapeFormGroup.controls.description.errors">
+          <div *ngIf="etapeFormGroup.controls.description.errors.required">
+            Description obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Date étape</label>
+        <input type="text" formControlName="dateetape" class="form-control" [ngClass]="{'is-invalid':submitted && etapeFormGroup.controls.dateetape.errors,'is-valid':submitted && !etapeFormGroup.controls.dateetape.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && etapeFormGroup.controls.dateetape.errors">
+          <div *ngIf="etapeFormGroup.controls.dateetape.errors.required">
+            Date étape obligatoire
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Kilométrage</label>
+        <input type="text" formControlName="km" class="form-control" [ngClass]="{'is-invalid':submitted && etapeFormGroup.controls.km.errors,'is-valid':submitted && !etapeFormGroup.controls.km.errors}">
+        <div class="invalid-feedback" *ngIf="submitted && etapeFormGroup.controls.km.errors">
+          <div *ngIf="etapeFormGroup.controls.km.errors.required">
+            Km obligatoire
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>
+

@@ -12,6 +12,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ExercicesComponent } from './components/exercices/exercices.component';
 import { NewvilleComponent } from './components/newville/newville.component';
 import { EditvilleComponent } from './components/editville/editville.component';
+import { EditetapeComponent } from './components/editetape/editetape.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { EditvilleComponent } from './components/editville/editville.component';
     HomeComponent,
     ExercicesComponent,
     NewvilleComponent,
-    EditvilleComponent
+    EditvilleComponent,
+    EditetapeComponent
   ],
   imports: [
     BrowserModule,

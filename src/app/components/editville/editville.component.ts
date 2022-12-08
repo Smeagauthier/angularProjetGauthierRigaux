@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 import {VillesService} from "../../services/villes.service";
+import {EtapesService} from "../../services/etapes.service";
+import {Etape} from "../../entities/etape.entities";
 
 @Component({
   selector: 'app-editville',
@@ -12,9 +14,11 @@ export class EditvilleComponent implements OnInit {
   villeFormGroup?: FormGroup;
   submitted = false;
   idville: number;
+  idv:any="";
+  etapes?:Etape[];
 
   constructor(private villesService: VillesService, private fb:
-    FormBuilder, activatedRoute: ActivatedRoute) {
+    FormBuilder, activatedRoute: ActivatedRoute, private etapesService:EtapesService) {
     this.idville = activatedRoute.snapshot.params.idville;
   }
 
@@ -43,5 +47,19 @@ export class EditvilleComponent implements OnInit {
       err => {
         alert(err.headers.get("error"));
       });
+  }
+
+  onShowEtapeVilleDepart(){
+    this.etapesService.getEtapesVilleDepart(this.idv).subscribe({
+      next: data => this.etapes = data,
+      error: err => alert("Erreur de recherche des villes de départ ")
+    })
+  }
+
+  onShowEtapeVilleArrivee(){
+    this.etapesService.getEtapesVilleArrivee(this.idv).subscribe({
+      next: data => this.etapes = data,
+      error: err => alert("Erreur de recherche des villes d'arrivée ")
+    })
   }
 }

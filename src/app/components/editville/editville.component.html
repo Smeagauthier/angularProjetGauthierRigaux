@@ -6,7 +6,8 @@
     </div>
     <div class="form-group">
       <label>Nom</label>
-      <input type ="text" class="form-control" formControlName="nom" [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.nom.errors}">
+      <input type="text" class="form-control" formControlName="nom"
+             [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.nom.errors}">
       <div *ngIf="submitted && villeFormGroup.controls.nom.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.nom.errors.required">
           Nom obligatoire
@@ -47,6 +48,37 @@
     <button (click)="onUpdateVille()" class="btn btn-success">
       Save
     </button>
+    <button (click)="onShowEtapeVilleDepart()" class="btn btn-success">
+      Etapes départ
+    </button>
+    <button (click)="onShowEtapeVilleArrivee()" class="btn btn-success">
+      Etapes arrivée
+    </button>
   </form>
 </div>
 
+<ng-container *ngIf="etapes">
+  <ng-container *ngIf="etapes.length>0 else vide">
+    <table class="table">
+      <thead>
+      <th>ID étape</th>
+      <th>Numéro</th>
+      <th>Description</th>
+      <th>Date étape</th>
+      <th>Kilométrage</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let et of etapes">
+        <td>{{et.idetape}}</td>
+        <td>{{et.numero}}</td>
+        <td>{{et.description}}</td>
+        <td>{{et.dateetape|date: 'dd-MM-yyyy'}}</td>
+        <td>{{et.km}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #vide>
+    Aucune Etape pour cette ville
+  </ng-template>
+</ng-container>
