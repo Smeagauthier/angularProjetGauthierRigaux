@@ -55,7 +55,6 @@
       Etapes arrivée
     </button>
   </form>
-</div>
 
 <ng-container *ngIf="etapes">
   <ng-container *ngIf="etapes.length>0 else vide">
@@ -82,3 +81,5 @@
     Aucune Etape pour cette ville
   </ng-template>
 </ng-container>
+<app-newetape [vilactdep]="villeFormGroup" (newEtape)="addEtape($event)"></app-newetape>
+</div>

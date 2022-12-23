@@ -50,16 +50,20 @@ export class EditvilleComponent implements OnInit {
   }
 
   onShowEtapeVilleDepart(){
-    this.etapesService.getEtapesVilleDepart(this.idv).subscribe({
+    this.etapesService.getEtapesVilleDepart(this.idville).subscribe({
       next: data => this.etapes = data,
-      error: err => alert("Erreur de recherche des villes de départ ")
+      error: err => alert("Erreur de recherche des villes de départ")
     })
   }
 
   onShowEtapeVilleArrivee(){
-    this.etapesService.getEtapesVilleArrivee(this.idv).subscribe({
+    this.etapesService.getEtapesVilleArrivee(this.idville).subscribe({
       next: data => this.etapes = data,
-      error: err => alert("Erreur de recherche des villes d'arrivée ")
+      error: err => alert("Erreur de recherche des villes d'arrivée voici l'id envoyé "+this.idville)
     })
+  }
+
+  addEtape($event: Etape) {
+    this.etapes?.push($event);
   }
 }

@@ -16,8 +16,12 @@ export class EtapesService {
     return this.httpClient.delete<void>(this.host + '/etapes/' + e.idetape);
   }
 
-  save(e: Etape, va: Ville, vd:Ville): Observable<Etape> {
+  saveArr(e: Etape, va: Ville): Observable<Etape> {
     e.villearrivee= va;
+    return this.httpClient.post<Etape>(this.host + '/etapes/', e);
+  }
+
+  saveDep(e: Etape, vd: Ville): Observable<Etape> {
     e.villedepart= vd;
     return this.httpClient.post<Etape>(this.host + '/etapes/', e);
   }
@@ -27,11 +31,11 @@ export class EtapesService {
   }
 
   getEtapesVilleDepart(idVille: number): Observable<Etape[]> {
-    return this.httpClient.get<Etape[]>(this.host + '/etapes/idville=' + idVille);
+    return this.httpClient.get<Etape[]>(this.host + '/etapes/idvilled=' + idVille);
   }
 
   getEtapesVilleArrivee(idVille_1: number): Observable<Etape[]> {
-    return this.httpClient.get<Etape[]>(this.host + '/etapes/idville_1=' + idVille_1);
+    return this.httpClient.get<Etape[]>(this.host + '/etapes/idvillea=' + idVille_1);
   }
 
   search(id:number):Observable<Etape>{

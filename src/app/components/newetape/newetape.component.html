@@ -1,0 +1,32 @@
+<div class="container">
+  <form [formGroup]="etapeFormGroup" *ngIf="etapeFormGroup">
+    <table class="table">
+      <thead>
+      <th>ID étape</th>
+      <th>Numéro</th>
+      <th>Description</th>
+      <th>Date de l'étape</th>
+      <th>Kilométrage</th>
+      </thead>
+      <tbody>
+      <td *ngIf="et ;else vide">{{et.idetape}} </td>
+      <ng-template #vide><td></td></ng-template>
+      <td> <input type ="text" class="form-control"
+                  formControlName="numero"></td>
+      <td> <input type ="text" class="form-control"
+                  formControlName="description"></td>
+      <td> <input type ="date" class="form-control"
+                  formControlName="dateetape"></td>
+      <td> <input type ="text" class="form-control"
+                  formControlName="km"></td>
+      </tbody>
+    </table>
+    <button (click)="onSaveEtapeDepart()" class="btn btn-success">
+      Save en tant que ville de départ
+    </button>
+    <button (click)="onSaveEtapeArrivee()" class="btn btn-success">
+      Save en tant que ville d'arrivée
+    </button>
+  </form>
+</div>
+

@@ -13,6 +13,7 @@ import { ExercicesComponent } from './components/exercices/exercices.component';
 import { NewvilleComponent } from './components/newville/newville.component';
 import { EditvilleComponent } from './components/editville/editville.component';
 import { EditetapeComponent } from './components/editetape/editetape.component';
+import { NewetapeComponent } from './components/newetape/newetape.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { EditetapeComponent } from './components/editetape/editetape.component';
     ExercicesComponent,
     NewvilleComponent,
     EditvilleComponent,
-    EditetapeComponent
+    EditetapeComponent,
+    NewetapeComponent
   ],
   imports: [
     BrowserModule,
