@@ -15,7 +15,7 @@
         <td></td>
       </ng-template>
       <td><input type="text" class="form-control"
-                 formControlName="numero" placeholder="999"></td>
+                 formControlName="numero" placeholder="100"></td>
       <td><input type="text" class="form-control"
                  formControlName="description" placeholder="Difficile"></td>
       <td><input type="date" class="form-control"
@@ -25,25 +25,26 @@
       <!--<td><input type="text" class="form-control"
                  formControlName="villearrivee" placeholder="Abuja"></td>-->
       <td>
-          <form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
+          <!--<form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
             <input ngModel name="nom" type="text" hidden>
             <button class="btn btn-sm btn-outline-info m-lg-2" >
               <span class = "fa fa-search"></span>
             </button>
-          </form>
-        <div class="container-fluid">
+          </form>-->
+
           <ng-container *ngIf="villes">
             <ng-container *ngIf="villes.length>0 else inconnu">
               <select class="form-control"
-                      formControlName="villearrivee">
-                <option *ngFor="let v of villes">{{v.nom}}</option>
+                      formGroupName="villearrivee"
+              (change)="getSelectedVillearrivee($event)">
+                <option disabled [value]="null" selected></option>
+                <option *ngFor="let v of villes" [value]="v.idville">{{v.nom}}</option>
               </select>
             </ng-container>
             <ng-template #inconnu>
               <p>Nom de ville inconnu</p>
             </ng-template>
           </ng-container>
-        </div>
       </td>
       </tbody>
     </table>

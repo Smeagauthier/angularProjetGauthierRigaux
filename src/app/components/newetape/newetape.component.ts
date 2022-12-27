@@ -18,7 +18,7 @@ export class NewetapeComponent implements OnInit {
   etapeFormGroup?: FormGroup;
   submitted = false;
   et?: Etape;
-  villes?: Ville[];
+  villes?: Ville[] = [];
 
   constructor(private fb: FormBuilder, private etapesService: EtapesService, private villesService: VillesService) {
 
@@ -33,21 +33,54 @@ export class NewetapeComponent implements OnInit {
       });
   }
 
+  getVilles() {
+    this.villesService.getVilles().subscribe(
+      {
+        next: data => {
+          this.villes = data.sort((a, b) => a.nom.localeCompare(b.nom));
+          console.log(this.villes)
+        }
+      });
+  }
+
 
   ngOnInit(): void {
+    this.getVilles();
     this.etapeFormGroup = this.fb.group({
-      idetape: [],
       numero: [],
       description: [],
       dateetape: [formatDate(new Date(), 'yyyy-MM-dd', 'en')],
       km: [],
-      //villearrivee: {}
+      villearrivee: this.fb.group({
+        idville: [],
+        nom: [],
+        latitude: [],
+        longitude: [],
+        pays: [],
+      })
     });
+  }
+
+  getSelectedVillearrivee($event: any) {
+    let selectedId=$event.target.value
+    console.log($event.target.value) //envoie la valeur dans l'input qui a changé dans l'event (ici ville.idville)
+    let ville = this.villes?.find((v) => v.idville == selectedId)//on cherche l'élément v tel que l'idville de cet élément est égal à l'event
+    console.log(ville)
+    /*this.villearrivee?.get('idville')?.setValue(ville?.idville);
+    this.villearrivee?.get('nom')?.setValue(ville?.nom);
+    this.villearrivee?.get('latitude')?.setValue(ville?.latitude);
+    this.villearrivee?.get('longitude')?.setValue(ville?.longitude);
+    this.villearrivee?.get('pays')?.setValue(ville?.pays);*/
+    this.villearrivee?.patchValue(ville);//méthode pour remplir les champs de l'objet de la ville d'arrivée (nom, lat, long, pays,..)
+  }
+
+  get villearrivee() {
+    return this.etapeFormGroup?.get('villearrivee');
   }
 
   onSaveEtape(): void {
     this.submitted = true;
-    this.etapesService.saveDep(this.etapeFormGroup?.value, this.vilactdep?.value).subscribe({
+    this.etapesService.save(this.etapeFormGroup?.value, this.vilactdep?.value).subscribe({
       next: data => {
         alert('Sauvegarde effectuée');
         alert('Voici le numéro de la ville de départ:' + data.villedepart)

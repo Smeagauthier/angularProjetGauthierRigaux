@@ -21,8 +21,9 @@ export class EtapesService {
     return this.httpClient.post<Etape>(this.host + '/etapes/', e);
   }*/
 
-  saveDep(e: Etape, vd: Ville): Observable<Etape> {
+  save(e: Etape, vd: Ville): Observable<Etape> {
     e.villedepart= vd;
+    console.log(e, vd);
     return this.httpClient.post<Etape>(this.host + '/etapes/', e);
   }
 
