@@ -59,7 +59,7 @@ export class EditvilleComponent implements OnInit {
   onShowEtapeVilleArrivee(){
     this.etapesService.getEtapesVilleArrivee(this.idville).subscribe({
       next: data => this.etapes = data,
-      error: err => alert("Erreur de recherche des villes d'arrivée voici l'id envoyé "+this.idville)
+      error: err => alert("Erreur de recherche des villes d'arrivée ")
     })
   }
 

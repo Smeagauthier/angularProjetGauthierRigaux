@@ -1,8 +1,42 @@
-<br>
-<form (ngSubmit)="onSearch()">
-  numéro de l'étape : <input type="text" [(ngModel)]="numetape" name="numetape">
-</form>
-<div *ngIf="etape"> <!-- si après la recherche comfact  n'est pas nul, alors tu vas afficher le formulaire d'edit commande-->
-  <app-editetape [etape]="etape" ></app-editetape>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li>
+      <form (ngSubmit)="onSearch()" class="form-inline">
+        ID de l'étape recherchée : <input type="text" [(ngModel)]="numetape" name="numetape">
+        <div class="form-text" style="margin-left: 189px; font-style: italic">Exemple : 3 </div>
+      </form>
+    </li>
+  </ul>
+</nav>
+
+<ng-container *ngIf="etapes">
+  <ng-container *ngIf="etapes.length>0 else vide">
+    <table class="table">
+      <thead>
+      <th>ID étape</th>
+      <th>Numéro</th>
+      <th>Description</th>
+      <th>Date étape</th>
+      <th>Kilométrage</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let et of etapes">
+        <td>{{et.idetape}}</td>
+        <td>{{et.numero}}</td>
+        <td>{{et.description}}</td>
+        <td>{{et.dateetape|date: 'dd-MM-yyyy'}}</td>
+        <td>{{et.km}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #vide>
+    Aucune Etape pour cette ville
+  </ng-template>
+</ng-container>
+
+
+<div *ngIf="etape">
+  <app-editetape [etape]="etape"></app-editetape>
 </div>
 

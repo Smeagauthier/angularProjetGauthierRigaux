@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {EtapesService} from "../../services/etapes.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Etape} from "../../entities/etape.entities";
+import {Ville} from "../../entities/ville.entities";
 
 @Component({
   selector: 'app-editetape',
@@ -13,6 +14,7 @@ export class EditetapeComponent implements OnInit {
   submitted = false;
   @Input() etape?: Etape;
   deleted=false;
+  villes?:Ville[];
 
   constructor(private etapesService:EtapesService, private fb:FormBuilder) { }
 
@@ -22,7 +24,9 @@ export class EditetapeComponent implements OnInit {
       numero: [this.etape?.numero, Validators.required],
       description: [this.etape?.description, Validators.required],
       dateetape: [this.etape?.dateetape, Validators.required],
-      km: [this.etape?.km, [Validators.required]]
+      km: [this.etape?.km, [Validators.required]],
+      villedepart: [this.etape?.villedepart.nom],
+      villearrivee: [this.etape?.villearrivee.nom]
     });
   }
 
@@ -36,17 +40,17 @@ export class EditetapeComponent implements OnInit {
       etapemaj.villearrivee = this.etape.villearrivee; //car le formulaire ne donne une valeur qu' aux champs propres de la commande
       etapemaj.villedepart = this.etape.villedepart; //car le formulaire ne donne une valeur qu' aux champs propres de la commande
       this.etapesService.updateEtape(etapemaj).subscribe({
-        next: data => alert('maj ok'),
+        next: data => alert('Mise à jour effectuée'),
         error: err => alert(err.headers.get("error"))
       })
     }
   }
 
   onDeleteEtape() {
-    let c = confirm('êtes vous sûr de vouloir supprimer ? ');
+    let c = confirm('Etes-vous sûr de vouloir supprimer ? ');
     if (c) {
       this.etapesService.deleteEtape(this.etapeFormGroup?.value).subscribe(data => {
-          alert('Effacement ok');
+          alert('Effacement effectué');
           this.deleted = true;
         },
         err => {

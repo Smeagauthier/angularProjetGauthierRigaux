@@ -7,26 +7,54 @@
       <th>Description</th>
       <th>Date de l'étape</th>
       <th>Kilométrage</th>
+      <th>Ville d'arrivée</th>
       </thead>
       <tbody>
       <td *ngIf="et ;else vide">{{et.idetape}} </td>
-      <ng-template #vide><td></td></ng-template>
-      <td> <input type ="text" class="form-control"
-                  formControlName="numero"></td>
-      <td> <input type ="text" class="form-control"
-                  formControlName="description"></td>
-      <td> <input type ="date" class="form-control"
-                  formControlName="dateetape"></td>
-      <td> <input type ="text" class="form-control"
-                  formControlName="km"></td>
+      <ng-template #vide>
+        <td></td>
+      </ng-template>
+      <td><input type="text" class="form-control"
+                 formControlName="numero" placeholder="999"></td>
+      <td><input type="text" class="form-control"
+                 formControlName="description" placeholder="Difficile"></td>
+      <td><input type="date" class="form-control"
+                 formControlName="dateetape"></td>
+      <td><input type="text" class="form-control"
+                 formControlName="km" placeholder="50"></td>
+      <!--<td><input type="text" class="form-control"
+                 formControlName="villearrivee" placeholder="Abuja"></td>-->
+      <td>
+          <form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
+            <input ngModel name="nom" type="text" hidden>
+            <button class="btn btn-sm btn-outline-info m-lg-2" >
+              <span class = "fa fa-search"></span>
+            </button>
+          </form>
+        <div class="container-fluid">
+          <ng-container *ngIf="villes">
+            <ng-container *ngIf="villes.length>0 else inconnu">
+              <select class="form-control"
+                      formControlName="villearrivee">
+                <option *ngFor="let v of villes">{{v.nom}}</option>
+              </select>
+            </ng-container>
+            <ng-template #inconnu>
+              <p>Nom de ville inconnu</p>
+            </ng-template>
+          </ng-container>
+        </div>
+      </td>
       </tbody>
     </table>
-    <button (click)="onSaveEtapeDepart()" class="btn btn-success">
-      Save en tant que ville de départ
-    </button>
-    <button (click)="onSaveEtapeArrivee()" class="btn btn-success">
-      Save en tant que ville d'arrivée
-    </button>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <ul class="navbar navbar-nav">
+        <li class="nav-item" class="buttons">
+          <button (click)="onSaveEtape()" class="btn btn-success">
+            Sauvegarder
+          </button>
+        </li>
+      </ul>
+    </nav>
   </form>
-</div>
 

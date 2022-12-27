@@ -1,0 +1,22 @@
+.card{
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 50%;
+  border: 1px solid cadetblue;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.card-cities{
+  position: absolute;
+  width: 50%;
+  border: 2px solid cadetblue;
+  padding: 10px;
+  font-weight: bold;
+  margin-top: 16%;
+  margin-left: 22%;
+  text-align:center;
+}
+
+

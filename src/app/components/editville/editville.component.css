@@ -1,0 +1,18 @@
+.container{
+  height: auto;
+  margin-top: 15px;
+}
+
+.buttons{
+  padding-left: 10px;
+}
+
+th{
+  color:cadetblue;
+}
+
+p{
+  color:red;
+  font-weight: bolder;
+  margin-left: 30px;
+}

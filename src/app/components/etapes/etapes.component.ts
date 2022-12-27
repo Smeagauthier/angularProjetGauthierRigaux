@@ -10,6 +10,8 @@ import {Etape} from "../../entities/etape.entities";
 export class EtapesComponent implements OnInit {
   etape: Etape|null = null;
   numetape:number=0;
+  etapes?:Etape[];
+  idetape?:number;
 
   constructor(private etapesService:EtapesService) { }
 
@@ -23,4 +25,5 @@ export class EtapesComponent implements OnInit {
       error : err => alert("Etape introuvable")
     })
   }
+
 }

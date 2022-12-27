@@ -16,6 +16,7 @@ export class ExercicesComponent implements OnInit {
   nom:String="";
   villestrouv?:Ville[];
   submitted=false;
+  villes?:Ville[];
 
   villeFormGroup?: FormGroup;
   etapeFormGroup?: FormGroup;

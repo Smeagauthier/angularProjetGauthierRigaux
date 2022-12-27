@@ -1,0 +1,15 @@
+.container{
+  margin-top: 25px;
+}
+
+input{
+  display:block;
+}
+
+.form-text{
+  font-style:italic;
+}
+
+.buttons{
+  padding-left: 10px;
+}

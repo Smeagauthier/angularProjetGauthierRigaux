@@ -1,6 +1,7 @@
-.navbar-custom {
-  background-color: green;
+a:hover{
+  color : cadetblue;
 }
-.nav-link {
-  color: yellow;
+a{
+  color: beige;
 }
+

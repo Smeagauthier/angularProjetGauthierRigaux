@@ -1,85 +1,100 @@
 <div class="container">
   <form [formGroup]="villeFormGroup" *ngIf="villeFormGroup">
-    <div class="form-group">
-      <label>IDVILLE</label>
-      <input type="text" class="form-control" formControlName="idville" readonly>
+    <div class="form-group" class="form-floating mb-3">
+      <input id="floatingID" placeholder="ID ville" type="text" class="form-control" formControlName="idville" readonly>
+      <label for="floatingID">ID ville</label>
     </div>
-    <div class="form-group">
-      <label>Nom</label>
-      <input type="text" class="form-control" formControlName="nom"
+    <div class="form-group" class="form-floating mb-3">
+      <input id="floatingNom" placeholder="Nom" type="text" class="form-control" formControlName="nom"
              [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.nom.errors}">
+      <label for="floatingNom">Nom</label>
       <div *ngIf="submitted && villeFormGroup.controls.nom.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.nom.errors.required">
           Nom obligatoire
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label>Latitude</label>
-      <input type="text" class="form-control" formControlName="latitude"
+    <div class="form-group" class="form-floating mb-3">
+      <input id="floatingLat" placeholder="Latitude" type="text" class="form-control" formControlName="latitude"
              [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.latitude.errors}">
+      <label for="floatingLat">Latitude</label>
       <div *ngIf="submitted && villeFormGroup.controls.latitude.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.latitude.errors.required">
           Latitude obligatoire
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label>Longitude</label>
-      <input type="text" class="form-control" formControlName="longitude"
+    <div class="form-group" class="form-floating mb-3">
+      <input id="floatingLong" placeholder="Longitude" type="text" class="form-control" formControlName="longitude"
              [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.latitude.errors}">
+      <label for="floatingLong">Longitude</label>
       <div *ngIf="submitted && villeFormGroup.controls.longitude.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.longitude.errors.required">
           Longitude obligatoire
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <label>Pays</label>
-      <input type="text" class="form-control" formControlName="pays"
+    <div class="form-group" class="form-floating mb-3">
+      <input id="floatingPays" placeholder="Pays" type="text" class="form-control" formControlName="pays"
              [ngClass]="{'is-invalid': submitted && villeFormGroup.controls.pays.errors}">
+      <label for="floatingPays">Pays</label>
       <div *ngIf="submitted && villeFormGroup.controls.pays.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.pays.errors.required">
           Pays obligatoire
         </div>
       </div>
     </div>
-    <br>
-    <button (click)="onUpdateVille()" class="btn btn-success">
-      Save
-    </button>
-    <button (click)="onShowEtapeVilleDepart()" class="btn btn-success">
-      Etapes départ
-    </button>
-    <button (click)="onShowEtapeVilleArrivee()" class="btn btn-success">
-      Etapes arrivée
-    </button>
+    <nav class="navbar navbar-expand-sm bg-light navbar-light">
+      <ul class="navbar navbar-nav">
+        <li class="nav-item" class="buttons">
+          <button (click)="onUpdateVille()" class="btn btn-success">
+            Sauvegarder
+          </button>
+        </li>
+        <li class="nav-item" class="buttons">
+          <button (click)="onShowEtapeVilleDepart()" class="btn btn-success">
+            Etapes départ
+          </button>
+        </li>
+        <li class="nav-item" class="buttons">
+        <button (click)="onShowEtapeVilleArrivee()" class="btn btn-success">
+          Etapes arrivée
+        </button>
+        </li>
+      </ul>
+    </nav>
   </form>
-
-<ng-container *ngIf="etapes">
-  <ng-container *ngIf="etapes.length>0 else vide">
-    <table class="table">
-      <thead>
-      <th>ID étape</th>
-      <th>Numéro</th>
-      <th>Description</th>
-      <th>Date étape</th>
-      <th>Kilométrage</th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let et of etapes">
-        <td>{{et.idetape}}</td>
-        <td>{{et.numero}}</td>
-        <td>{{et.description}}</td>
-        <td>{{et.dateetape|date: 'dd-MM-yyyy'}}</td>
-        <td>{{et.km}}</td>
-      </tr>
-      </tbody>
-    </table>
+</div>
+<div class="container">
+  <ng-container *ngIf="etapes">
+    <ng-container *ngIf="etapes.length>0 else vide">
+      <table class="table">
+        <thead>
+        <th>ID étape</th>
+        <th>Numéro</th>
+        <th>Description</th>
+        <th>Date étape</th>
+        <th>Kilométrage</th>
+        <th>Ville de départ</th>
+        <th>Ville d'arrivée</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let et of etapes">
+          <td>{{et.idetape}}</td>
+          <td>{{et.numero}}</td>
+          <td>{{et.description}}</td>
+          <td>{{et.dateetape|date: 'dd-MM-yyyy'}}</td>
+          <td>{{et.km}}</td>
+          <td>{{et.villedepart.nom}}</td>
+          <td>{{et.villearrivee.nom}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #vide>
+      <p>Aucune étape pour cette ville</p>
+    </ng-template>
   </ng-container>
-  <ng-template #vide>
-    Aucune Etape pour cette ville
-  </ng-template>
-</ng-container>
-<app-newetape [vilactdep]="villeFormGroup" (newEtape)="addEtape($event)"></app-newetape>
+  <br>
+  <app-newetape [vilactdep]="villeFormGroup" (newEtape)="addEtape($event)"></app-newetape>
 </div>

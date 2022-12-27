@@ -16,10 +16,10 @@ export class EtapesService {
     return this.httpClient.delete<void>(this.host + '/etapes/' + e.idetape);
   }
 
-  saveArr(e: Etape, va: Ville): Observable<Etape> {
+  /*saveArr(e: Etape, va: Ville): Observable<Etape> {
     e.villearrivee= va;
     return this.httpClient.post<Etape>(this.host + '/etapes/', e);
-  }
+  }*/
 
   saveDep(e: Etape, vd: Ville): Observable<Etape> {
     e.villedepart= vd;
