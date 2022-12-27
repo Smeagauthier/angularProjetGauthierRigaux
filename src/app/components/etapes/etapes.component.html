@@ -2,7 +2,7 @@
   <ul class="navbar navbar-nav">
     <li>
       <form (ngSubmit)="onSearch()" class="form-inline">
-        ID de l'étape recherchée : <input type="text" [(ngModel)]="numetape" name="numetape">
+        ID de l'étape recherchée : <input type="text" [(ngModel)]="numetape" name="numetape" pattern="\d{1,5}" title="Veuillez n'entrer que des chiffres">
         <div class="form-text" style="margin-left: 189px; font-style: italic">Exemple : 3 </div>
       </form>
     </li>

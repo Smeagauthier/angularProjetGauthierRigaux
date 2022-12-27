@@ -15,36 +15,73 @@
         <td></td>
       </ng-template>
       <td><input type="text" class="form-control"
-                 formControlName="numero" placeholder="100"></td>
+                 formControlName="numero" placeholder="100"
+                 [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.numero.errors}">
+        <div *ngIf="submitted && etapeFormGroup.controls.numero.errors" class="invalid-feedback">
+          <div *ngIf="etapeFormGroup.controls.numero.errors.required">
+            Numéro obligatoire
+          </div>
+          <div *ngIf="etapeFormGroup.controls.numero.errors.pattern">
+            Veuillez n'entrer que des chiffres
+          </div>
+        </div>
+      </td>
       <td><input type="text" class="form-control"
-                 formControlName="description" placeholder="Difficile"></td>
+                 formControlName="description" placeholder="Difficile"
+                 [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.description.errors}">
+        <div *ngIf="submitted && etapeFormGroup.controls.description.errors" class="invalid-feedback">
+          <div *ngIf="etapeFormGroup.controls.description.errors.required">
+            Description obligatoire
+          </div>
+        </div>
+      </td>
       <td><input type="date" class="form-control"
-                 formControlName="dateetape"></td>
+                 formControlName="dateetape"
+                 [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.dateetape.errors}">
+        <div *ngIf="submitted && etapeFormGroup.controls.dateetape.errors" class="invalid-feedback">
+          <div *ngIf="etapeFormGroup.controls.dateetape.errors.required">
+            Date de l'étape obligatoire
+          </div>
+        </div>
+      </td>
       <td><input type="text" class="form-control"
-                 formControlName="km" placeholder="50"></td>
+                 formControlName="km" placeholder="50"
+                 [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.km.errors}">
+        <div *ngIf="submitted && etapeFormGroup.controls.km.errors" class="invalid-feedback">
+          <div *ngIf="etapeFormGroup.controls.km.errors.required">
+            Kilométrage obligatoire
+          </div>
+          <div *ngIf="etapeFormGroup.controls.km.errors.pattern">
+            Veuillez n'entrer que des chiffres
+          </div>
+        </div>
+      </td>
       <!--<td><input type="text" class="form-control"
                  formControlName="villearrivee" placeholder="Abuja"></td>-->
       <td>
-          <!--<form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
-            <input ngModel name="nom" type="text" hidden>
-            <button class="btn btn-sm btn-outline-info m-lg-2" >
-              <span class = "fa fa-search"></span>
-            </button>
-          </form>-->
+        <!--<form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
+          <input ngModel name="nom" type="text" hidden>
+          <button class="btn btn-sm btn-outline-info m-lg-2" >
+            <span class = "fa fa-search"></span>
+          </button>
+        </form>-->
 
-          <ng-container *ngIf="villes">
-            <ng-container *ngIf="villes.length>0 else inconnu">
-              <select class="form-control"
-                      formGroupName="villearrivee"
-              (change)="getSelectedVillearrivee($event)">
-                <option disabled [value]="null" selected></option>
-                <option *ngFor="let v of villes" [value]="v.idville">{{v.nom}}</option>
-              </select>
-            </ng-container>
-            <ng-template #inconnu>
-              <p>Nom de ville inconnu</p>
-            </ng-template>
+        <ng-container *ngIf="villes">
+          <ng-container *ngIf="villes.length>0">
+            <select class="form-control"
+                    formGroupName="villearrivee"
+                    (change)="getSelectedVillearrivee($event)"
+                    [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.villearrivee.errors}">
+              <option disabled [value]="null" selected></option>
+              <option *ngFor="let v of villes" [value]="v.idville">{{v.nom}}</option>
+            </select>
+            <div *ngIf="submitted && etapeFormGroup.controls.villearrivee.errors" class="invalid-feedback">
+              <div *ngIf="etapeFormGroup.controls.villearrivee.errors.required">
+                Ville d'arrivée obligatoire
+              </div>
+            </div>
           </ng-container>
+        </ng-container>
       </td>
       </tbody>
     </table>

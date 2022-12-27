@@ -21,10 +21,10 @@ export class EditetapeComponent implements OnInit {
   ngOnInit(): void {
     this.etapeFormGroup = this.fb.group({
       idetape: [this.etape?.idetape],
-      numero: [this.etape?.numero, Validators.required],
+      numero: [this.etape?.numero, [Validators.required, Validators.pattern("^[0-9]*$")]],
       description: [this.etape?.description, Validators.required],
       dateetape: [this.etape?.dateetape, Validators.required],
-      km: [this.etape?.km, [Validators.required]],
+      km: [this.etape?.km, [Validators.required, Validators.pattern("^[0-9]*$")]],
       villedepart: [this.etape?.villedepart.nom],
       villearrivee: [this.etape?.villearrivee.nom]
     });

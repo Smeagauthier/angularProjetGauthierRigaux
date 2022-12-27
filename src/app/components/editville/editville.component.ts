@@ -14,11 +14,11 @@ export class EditvilleComponent implements OnInit {
   villeFormGroup?: FormGroup;
   submitted = false;
   idville: number;
-  idv:any="";
-  etapes?:Etape[];
+  idv: any = "";
+  etapes?: Etape[];
 
   constructor(private villesService: VillesService, private fb:
-    FormBuilder, activatedRoute: ActivatedRoute, private etapesService:EtapesService) {
+    FormBuilder, activatedRoute: ActivatedRoute, private etapesService: EtapesService) {
     this.idville = activatedRoute.snapshot.params.idville;
   }
 
@@ -27,10 +27,10 @@ export class EditvilleComponent implements OnInit {
       ville => {
         this.villeFormGroup = this.fb.group({
           idville: [ville.idville, Validators.required],
-          nom: [ville.nom, Validators.required],
-          latitude: [ville.latitude, Validators.required],
-          longitude: [ville.longitude, Validators.required],
-          pays: [ville.pays, Validators.required]
+          nom: [ville.nom, [Validators.required, Validators.pattern("^[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+$")]],
+          latitude: [ville.latitude, [Validators.required, Validators.pattern("^[0-9]{2}([.][0-9]{4})$")]],
+          longitude: [ville.longitude, [Validators.required, Validators.pattern("^[0-9]{2}([.][0-9]{4})$")]],
+          pays: [ville.pays, [Validators.required, Validators.pattern("^[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+$")]]
         })
       });
   }
@@ -40,23 +40,22 @@ export class EditvilleComponent implements OnInit {
     if (this.villeFormGroup?.invalid) {
       return;
     }
-
     this.villesService.updateVille(this.villeFormGroup?.value).subscribe(data => {
-        alert('maj ok')
+        alert('Mise à jour effectuée')
       },
       err => {
         alert(err.headers.get("error"));
       });
   }
 
-  onShowEtapeVilleDepart(){
+  onShowEtapeVilleDepart() {
     this.etapesService.getEtapesVilleDepart(this.idville).subscribe({
       next: data => this.etapes = data,
       error: err => alert("Erreur de recherche des villes de départ")
     })
   }
 
-  onShowEtapeVilleArrivee(){
+  onShowEtapeVilleArrivee() {
     this.etapesService.getEtapesVilleArrivee(this.idville).subscribe({
       next: data => this.etapes = data,
       error: err => alert("Erreur de recherche des villes d'arrivée ")

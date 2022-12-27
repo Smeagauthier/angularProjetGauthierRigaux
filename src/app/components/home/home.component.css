@@ -2,21 +2,60 @@
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
-  width: 50%;
+  width: 10%;
   border: 1px solid cadetblue;
   padding: 10px;
-  font-weight: bold;
+  font-style: italic;
+  color:darkgrey;
+  text-align: center;
+}
+
+img{
+  width:35%;
+  position: center;
+}
+
+footer{
+  border-top: 1px solid lightgray ;
+  position:absolute;
+  clear: both;
+  height: 60px;
+  width:100%;
+  bottom: 0;
+  color: darkgrey;
+
+}
+
+.droite{
+  text-align: right;
+  padding-right: 40px;
+  padding-top: 10px;
+}
+
+.gauche{
+  padding-left:40px;
+  padding-top: 10px;
 }
 
 .card-cities{
-  position: absolute;
+  position: center;
   width: 50%;
   border: 2px solid cadetblue;
   padding: 10px;
   font-weight: bold;
-  margin-top: 16%;
-  margin-left: 22%;
+  margin-top: 2%;
+  margin-left: 25%;
   text-align:center;
+  border-radius: 20px;
 }
 
+.icon{
+  width:100px;
+  padding-left:30px;
+}
+
+.schema{
+  margin-left: 35%;
+  margin-top: 6%;
+}
 

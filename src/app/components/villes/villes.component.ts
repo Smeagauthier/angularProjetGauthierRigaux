@@ -20,7 +20,7 @@ export class VillesComponent implements OnInit {
     this.villesService.getVilleNom(value.nom).subscribe(
       {
         next: data => {
-          this.villes = data
+          this.villes = data.sort((a, b) => a.nom.localeCompare(b.nom));
         }
       });
   }

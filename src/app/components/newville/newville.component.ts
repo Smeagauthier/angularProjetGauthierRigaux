@@ -17,10 +17,10 @@ export class NewvilleComponent implements OnInit {
 
   ngOnInit(): void {
     this.villeFormGroup = this.fb.group({
-      nom: ['', Validators.required],
-      latitude: ['', Validators.required],
-      longitude: ['', Validators.required],
-      pays: ['', Validators.required],
+      nom: ['', [Validators.required, Validators.pattern("^[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+$")]],
+      latitude: ['', [Validators.required, Validators.pattern("^[0-9]{2}([.][0-9]{4})$")]],
+      longitude: ['', [Validators.required, Validators.pattern("^[0-9]{2}([.][0-9]{4})$")]],
+      pays: ['', [Validators.required, Validators.pattern("^[A-Za-zàáâãäåçèéêëìíîïðòóôõöùúûüýÿñÀÁÂÃÄÅÇÈÉÊËÌÍÎÏÐÒÓÔÕÖÙÚÛÜÝŸÑ -]+$")]],
     });
   }
 

@@ -7,6 +7,9 @@
         <div *ngIf="villeFormGroup.controls.nom.errors.required">
           Nom obligatoire
         </div>
+        <div *ngIf="villeFormGroup.controls.nom.errors.pattern">
+          Veuillez entrer un nom de ville valide
+        </div>
       </div>
     </div>
     <div class="form-group" class="form-floating mb-3">
@@ -16,6 +19,9 @@
       <div *ngIf="submitted && villeFormGroup.controls.latitude.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.latitude.errors.required">
           Latitude obligatoire
+        </div>
+        <div *ngIf="villeFormGroup.controls.latitude.errors.pattern">
+          Veuillez entrer la latitude sous ce format : 12.3456
         </div>
       </div>
     </div>
@@ -27,6 +33,9 @@
         <div *ngIf="villeFormGroup.controls.longitude.errors.required">
           Longitude obligatoire
         </div>
+        <div *ngIf="villeFormGroup.controls.longitude.errors.pattern">
+          Veuillez entrer la longitude sous ce format : 12.3456
+        </div>
       </div>
     </div>
     <div class="form-group" class="form-floating mb-0">
@@ -35,6 +44,9 @@
       <div *ngIf="submitted && villeFormGroup.controls.pays.errors" class="invalid-feedback">
         <div *ngIf="villeFormGroup.controls.pays.errors.required">
           Pays obligatoire
+        </div>
+        <div *ngIf="villeFormGroup.controls.pays.errors.pattern">
+          Veuillez entrer un pays valide
         </div>
       </div>
     </div>
