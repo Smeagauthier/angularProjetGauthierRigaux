@@ -1,3 +1,8 @@
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <p class="card-text">Page brouillon destinée aux exercices</p>
+  </div>
+</div>
 <!--<br>
 <form #f=ngForm (ngSubmit)="rechParForm(f.value)">
   ID de la ville : <input type="text" ngModel name="numero">
@@ -79,7 +84,7 @@
   </form>
 </div> -->
 
-<br>
+<!--<br>
 <form #f3=ngForm (ngSubmit)="rechercheEtapeParID(f3.value)">
   id recherché :  <input type="text" ngModel name="idetape">
 </form>
@@ -125,43 +130,4 @@
       </div>
     </form>
   </div>
-</div>
-
-<br>
-<br>
-
-
-<ng-container *ngIf="villes">
-  c'est dans le container ng
-  <ng-container *ngIf="villes.length>0 else vide">
-    c'est dans le select
-    <select>
-      <option *ngFor="let v of villes">{{v.nom}}</option>
-    </select>
-  </ng-container>
-  <ng-template #vide>
-    Aucune ville dans cette liste
-  </ng-template>
-</ng-container>
-
-
-<!-- <div class="form-group" class="form-floating mb-3">
-      <input id="floatingVilleDep" placeholder="Ville de départ" type="text" class="form-control"
-             formControlName="villedepart" readonly
-             [ngClass]="{'is-invalid': submitted && etapeFormGroup.controls.villedepart.errors}">
-      <label for="floatingVilleDep">Ville de départ</label>
-
-      <ng-container *ngIf="villes">
-        <ng-container *ngIf="villes.length>0">
-      <select *ngFor="let v of villes">
-        <option selected></option>
-        <option *ngIf="villes.length>0">{{v.nom}}</option>
-      </select>
-        </ng-container>
-      </ng-container>
-      <div *ngIf="submitted && etapeFormGroup.controls.villedepart.errors" class="invalid-feedback">
-        <div *ngIf="etapeFormGroup.controls.villedepart.errors.required">
-          Ville de départ obligatoire
-        </div>
-      </div>
-    </div> -->
+</div>-->

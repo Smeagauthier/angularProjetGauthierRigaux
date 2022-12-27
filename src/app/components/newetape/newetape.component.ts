@@ -38,7 +38,6 @@ export class NewetapeComponent implements OnInit {
       {
         next: data => {
           this.villes = data.sort((a, b) => a.nom.localeCompare(b.nom));
-          //console.log(this.villes)
         }
       });
   }
@@ -47,25 +46,24 @@ export class NewetapeComponent implements OnInit {
   ngOnInit(): void {
     this.getVilles();
     this.etapeFormGroup = this.fb.group({
-      numero: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
-      description: ['',Validators.required],
+      numero: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
+      description: ['', Validators.required],
       dateetape: [formatDate(new Date(), 'yyyy-MM-dd', 'en'), Validators.required],
-      km: ['',[Validators.required, Validators.pattern("^[0-9]*$")]],
+      km: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
       villearrivee: this.fb.group({
         idville: [],
         nom: [],
         latitude: [],
         longitude: [],
         pays: [],
-      }, Validators.required)
+      })
     });
   }
 
   getSelectedVillearrivee($event: any) {
-    let selectedId=$event.target.value
+    let selectedId = $event.target.value
     console.log($event.target.value) //envoie la valeur dans l'input qui a changé dans l'event (ici ville.idville)
     let ville = this.villes?.find((v) => v.idville == selectedId)//on cherche l'élément v tel que l'idville de cet élément est égal à l'event
-    //console.log(ville)
     /*this.villearrivee?.get('idville')?.setValue(ville?.idville);
     this.villearrivee?.get('nom')?.setValue(ville?.nom);
     this.villearrivee?.get('latitude')?.setValue(ville?.latitude);
@@ -86,7 +84,13 @@ export class NewetapeComponent implements OnInit {
         this.et = data;
         this.newEtape.emit(data)
       },
-      error: err => alert(err.headers.get("error"))
+      error: err => {
+        if(this.villearrivee == null){
+          alert('Veuillez entrer une ville d\'arrivée');
+        } else {
+          alert(err.headers.get("error"));
+        }
+      }
     });
   }
 
