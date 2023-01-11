@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Ville} from "../../entities/ville.entities";
 import {VillesService} from "../../services/villes.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {EtapesService} from "../../services/etapes.service";
+import {Etape} from "../../entities/etape.entities";
 
 @Component({
   selector: 'app-exercices',
@@ -11,17 +12,23 @@ import {EtapesService} from "../../services/etapes.service";
 })
 export class ExercicesComponent implements OnInit {
 
-  ville:Ville|null=null;
-  numrech:number=0;
-  nom:String="";
-  villestrouv?:Ville[];
-  submitted=false;
-  villes?:Ville[];
-
+  ville: Ville | null = null;
+  numrech: number = 0;
+  nom: String = "";
+  villestrouv?: Ville[];
+  submitted = false;
+  villes?: Ville[];
+  etapes?: Etape[];
+  bcc: number = 0;
+  item: number = 0;
+  total: any;
   villeFormGroup?: FormGroup;
   etapeFormGroup?: FormGroup;
+  latitude?:number;
+  longitude?:number;
 
-  constructor(private villeService:VillesService, private fb: FormBuilder, private etapesService:EtapesService) {
+
+  constructor(private villeService: VillesService, private fb: FormBuilder, private etapesService: EtapesService) {
   }
 
   ngOnInit(): void {
@@ -33,27 +40,30 @@ export class ExercicesComponent implements OnInit {
     })
   }
 
-  onSearchById(idville:number) {
+  onSearchById(idville: number) {
     this.villeService.getVille(idville).subscribe({
-      next:data=>this.ville=data,
-      error:error=>alert(error)
+      next: data => this.ville = data,
+      error: error => alert(error)
     })
   }
 
   recherche() {
-    this.ville=null;
+    this.ville = null;
     this.villeService.getVille(this.numrech).subscribe({
-      next:data=>this.ville=data,
-      error:error=> alert("erreur "+error.headers.get("error"))
+      next: data => this.ville = data,
+      error: error => alert("erreur " + error.headers.get("error"))
     })
   }
 
   rechParForm(value: any) {
     this.ville = null;
-    let numero:number = value.numero;
+    let numero: number = value.numero;
     this.villeService.getVille(numero).subscribe({
-      next:data=>this.ville=data,
-      error:error=> {alert("erreur ");this.ville=null;}
+      next: data => this.ville = data,
+      error: error => {
+        alert("erreur ");
+        this.ville = null;
+      }
     })
   }
 
@@ -75,7 +85,10 @@ export class ExercicesComponent implements OnInit {
           this.villestrouv?.splice(index, 1);
         }
       },
-      error: error => {alert("erreur ");this.ville = null;}
+      error: error => {
+        alert("erreur ");
+        this.ville = null;
+      }
     })
   }
 
@@ -84,7 +97,7 @@ export class ExercicesComponent implements OnInit {
     if (this.villeFormGroup?.invalid) alert("Encodage invalide");
     else {
       alert(this.villeFormGroup?.value.nom + " " +
-        this.villeFormGroup?.value.latitude + " "+
+        this.villeFormGroup?.value.latitude + " " +
         this.villeFormGroup?.value.longitude + " "
         + this.villeFormGroup?.value.pays);
     }
@@ -135,5 +148,19 @@ export class ExercicesComponent implements OnInit {
       }
     )
   }
+
+
+  /*rechercheEtapeParDesc(value:any){
+    this.etapesService.searchDesc(value.description).subscribe({
+      next: data => {
+        this.etapes = data
+      }
+    })
+  }
+
+  getTotalKm() {
+    return this.etapes?.map(t => t.km).reduce((a, b) => a + b, 0);
+  }*/
+
 
 }

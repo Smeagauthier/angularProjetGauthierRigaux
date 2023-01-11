@@ -36,9 +36,9 @@ export class EditetapeComponent implements OnInit {
       return;
     }
     let etapemaj: Etape = this.etapeFormGroup?.value;
-    if (this.etape) {//permet de s'assurer que la commande a bien une valeur et évite les avertissements "possiblement indéfini"
-      etapemaj.villearrivee = this.etape.villearrivee; //car le formulaire ne donne une valeur qu' aux champs propres de la commande
-      etapemaj.villedepart = this.etape.villedepart; //car le formulaire ne donne une valeur qu' aux champs propres de la commande
+    if (this.etape) {
+      etapemaj.villearrivee = this.etape.villearrivee;
+      etapemaj.villedepart = this.etape.villedepart;
       this.etapesService.updateEtape(etapemaj).subscribe({
         next: data => alert('Mise à jour effectuée'),
         error: err => alert(err.headers.get("error"))

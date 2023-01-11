@@ -36,4 +36,9 @@ export class VillesService {
     return this.httpClient.put<Ville>(this.host + "/villes/" + v.idville, v);
   }
 
+  /*searchByPays(pays: string): Observable<Ville[]> {
+    return this.httpClient.get<Ville[]>(this.host + "/villes/pays=" + pays);
+  }*/
+
+
 }

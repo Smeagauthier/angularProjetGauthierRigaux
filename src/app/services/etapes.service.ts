@@ -22,7 +22,7 @@ export class EtapesService {
   }*/
 
   save(e: Etape, vd: Ville): Observable<Etape> {
-    e.villedepart= vd;
+    e.villedepart = vd;
     console.log(e, vd);
     return this.httpClient.post<Etape>(this.host + '/etapes/', e);
   }
@@ -39,7 +39,24 @@ export class EtapesService {
     return this.httpClient.get<Etape[]>(this.host + '/etapes/idvillea=' + idVille_1);
   }
 
-  search(id:number):Observable<Etape>{
-    return this.httpClient.get<Etape>(this.host+"/etapes/"+id);
+  search(id: number): Observable<Etape> {
+    return this.httpClient.get<Etape>(this.host + "/etapes/" + id);
   }
+
+  /*searchDesc(desc: string): Observable<Etape[]> {
+    return this.httpClient.get<Etape[]>(this.host + "/etapes/description=" + desc);
+  }*/
+
+  /*searchEtapesByPays(pays: string): Observable<Etape[]> {
+    return this.httpClient.get<Etape[]>(this.host + "/etapes/pays=" + pays);
+  }*/
+
+  getEtapesKm(kmMin: number, kmMax: number): Observable<Etape[]> {
+    return this.httpClient.get<Etape[]>(this.host + "/etapes/" + kmMin + "/" + kmMax);
+  }
+
+  getEtapes(): Observable<Etape[]> {
+    return this.httpClient.get<Etape[]>(this.host + '/etapes/all');
+  }
+
 }

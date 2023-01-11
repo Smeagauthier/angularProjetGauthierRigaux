@@ -8,22 +8,24 @@ import {Etape} from "../../entities/etape.entities";
   styleUrls: ['./etapes.component.css']
 })
 export class EtapesComponent implements OnInit {
-  etape: Etape|null = null;
-  numetape:number=0;
-  etapes?:Etape[];
-  idetape?:number;
+  etape: Etape | null = null;
+  numetape: number = 0;
+  etapes?: Etape[];
+  idetape?: number;
 
-  constructor(private etapesService:EtapesService) { }
+  constructor(private etapesService: EtapesService) {
+  }
 
   ngOnInit(): void {
   }
 
-  onSearch(){
-    this.etape=null;
+  onSearch() {
+    this.etape = null;
     this.etapesService.search(this.numetape).subscribe({
-      next : data => this.etape=data,
-      error : err => alert("Etape introuvable")
+      next: data => this.etape = data,
+      error: err => alert("Etape introuvable")
     })
   }
-
 }
+
+

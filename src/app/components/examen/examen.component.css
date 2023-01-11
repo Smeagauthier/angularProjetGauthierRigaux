@@ -1,0 +1,20 @@
+.erreurRecherche{
+  color:red;
+  font-weight: bolder;
+  margin-left: 30px;
+}
+
+p{
+  font-style: italic;
+  color:cadetblue;
+  margin-top: 60px;
+}
+
+h4{
+  text-align: center;
+  margin-top: 10px;
+}
+
+form{
+  margin-left:30px;
+}

@@ -50,13 +50,13 @@ export class NewetapeComponent implements OnInit {
       description: ['', Validators.required],
       dateetape: [formatDate(new Date(), 'yyyy-MM-dd', 'en'), Validators.required],
       km: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-      villearrivee: this.fb.group({
+      villearrivee: /*[*/this.fb.group({
         idville: [],
         nom: [],
         latitude: [],
         longitude: [],
         pays: [],
-      })
+      })/*, [Validators.required]]*/
     });
   }
 
@@ -69,7 +69,7 @@ export class NewetapeComponent implements OnInit {
     this.villearrivee?.get('latitude')?.setValue(ville?.latitude);
     this.villearrivee?.get('longitude')?.setValue(ville?.longitude);
     this.villearrivee?.get('pays')?.setValue(ville?.pays);*/
-    this.villearrivee?.patchValue(ville);//méthode pour remplir les champs de l'objet de la ville d'arrivée (nom, lat, long, pays,..)
+    this.villearrivee?.patchValue(ville);//méthode pour remplir les champs de l'objet de la ville d'arrivée (nom, lat, long, pays,..) grâce à l'élément ville cherché au préalable
   }
 
   get villearrivee() {

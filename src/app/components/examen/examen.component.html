@@ -1,0 +1,88 @@
+<h4>Page dédiée à l'examen d'API3 du 11/01/2023</h4>
+
+<div class="form-floating mb-3">
+  <nav class="navbar navbar-expand-sm bg-light navbar-light">
+    <ul class="navbar navbar-nav">
+      <li>
+        <form (ngSubmit)="onSearchEtapesBetweenKm()" class="form-inline">
+          <p>Entrer des kilométrages (Minimum et Maximum) pour afficher les étapes comprises entre ces bornes : </p>
+          <input [(ngModel)]="kmMin" name="kmMin" type="text" placeholder="Km Min" class="zoneRech">
+          <input [(ngModel)]="kmMax" name="kmMax" type="text" placeholder="Km Max" class="zoneRech">
+          <button class="btn btn-sm btn-outline-info m-lg-2">
+            <span class="fa fa-search"></span>
+          </button>
+          <button (click)="onSearchDoublons()" class="btn btn-sm btn-outline-info ms-2">Afficher les étapes qui ont la
+            même
+            ville de départ et d'arrivée
+          </button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="container">
+  <ng-container *ngIf="etapes">
+    <ng-container *ngIf="etapes.length>0 else inconnu">
+      <table class="table">
+        <thead>
+        <th>IdEtape</th>
+        <th>Numéro</th>
+        <th>Description</th>
+        <th>Date de l'étape</th>
+        <th>Kilométrage</th>
+        <th>Ville de départ</th>
+        <th>Ville d'arrivée</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of etapes">
+          <td>{{e.idetape}}</td>
+          <td>{{e.numero}}</td>
+          <td>{{e.description}}</td>
+          <td>{{e.dateetape}}</td>
+          <td>{{e.km}}</td>
+          <td>{{e.villearrivee.nom}}</td>
+          <td>{{e.villedepart.nom}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #inconnu>
+      <p class="erreurRecherche">Aucune étape trouvée </p>
+    </ng-template>
+  </ng-container>
+</div>
+
+<!--<div class="container">
+  <ng-container *ngIf="etapes">
+    <ng-container *ngIf="etapes.length>0 else inconnu">
+      <table class="table">
+        <thead>
+        <th>Boolean</th>
+        <th>IdEtape</th>
+        <th>Numéro</th>
+        <th>Description</th>
+        <th>Date de l'étape</th>
+        <th>Kilométrage</th>
+        <th>Ville de départ</th>
+        <th>Ville d'arrivée</th>
+        </thead>
+        <tbody>
+        <tr *ngFor="let e of etapes">
+          <td>{{ok == (e.villedepart.nom === e.villearrivee.nom)}}</td>
+            <td>{{e.idetape}}</td>
+            <td>{{e.numero}}</td>
+            <td>{{e.description}}</td>
+            <td>{{e.dateetape}}</td>
+            <td>{{e.km}}</td>
+            <td>{{e.villearrivee.nom}}</td>
+            <td>{{e.villedepart.nom}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </ng-container>
+    <ng-template #inconnu>
+      <p class="erreurRecherche">Aucune étape trouvée </p>
+    </ng-template>
+  </ng-container>
+</div>-->
+
